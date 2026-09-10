@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>COOLISM — Where Style Relaxes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="marquee" id="marquee">
+    <span>Free nationwide delivery over Rs 5,000 <i>◆</i></span>
+    <span>New Winter Drop is live <i>◆</i></span>
+    <span>Cash on delivery available across Pakistan <i>◆</i></span>
+    <span>Easy 14-day exchanges <i>◆</i></span>
+  </div>
+</div>
+
+<header class="nav-wrap" id="navWrap">
+  <div class="container nav">
+    <a href="#" class="logo"><span class="dot"></span>COOL<em>ISM</em></a>
+    <nav class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#collections">Collections</a>
+      <a href="#story">Our Story</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      </button>
+      <button class="btn-ghost" id="accountBtn">Login</button>
+      <button class="icon-btn" id="accountIcon" aria-label="Account">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="badge" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#shop">Shop</a>
+    <a href="#collections">Collections</a>
+    <a href="#story">Our Story</a>
+    <a href="#contact">Contact</a>
+    <a href="#" id="mobileLogin">Login / Sign Up</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-ghost">COOLISM</div>
+  <div class="container hero-inner">
+    <p class="eyebrow reveal">Premium Streetwear · Est. Karachi</p>
+    <h1 class="reveal">Where style <span class="it">relaxes.</span></h1>
+    <p class="lead reveal">Quiet luxury for the unhurried. Cut from heavyweight fabrics, dyed in deep royal tones, and finished for the people who dress for themselves — not the room.</p>
+    <div class="hero-cta reveal">
+      <a href="#shop" class="btn btn-gold">Shop the Collection <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#story" class="btn btn-line">Our Story</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat"><b>12K+</b><span>Happy Clients</span></div>
+      <div class="stat"><b>4.9★</b><span>Average Rating</span></div>
+      <div class="stat"><b>48H</b><span>Nationwide Delivery</span></div>
+      <div class="stat"><b>100%</b><span>Premium Cotton</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="collections">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow reveal">Curated</p>
+        <h2 class="reveal">Shop by Category</h2>
+      </div>
+      <p class="reveal">Four edits, one philosophy — relaxed silhouettes with an unmistakably rich finish.</p>
+    </div>
+
+    <div class="cats">
+      <a href="#shop" class="cat-card reveal" data-filter="shirts">
+        <div class="cat-art">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="teeG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E33A3A"/><stop offset="100%" stop-color="#A81E1E"/></linearGradient></defs>
+            <rect width="300" height="400" fill="#F4F1EB"/>
+            <path d="M150 22 Q150 8 164 8 Q176 8 176 20" stroke="#B4B4B4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <line x1="150" y1="22" x2="150" y2="46" stroke="#B4B4B4" stroke-width="2.5"/>
+            <path d="M98 58 Q150 44 202 58" stroke="#B8B8B8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M98 58 L80 82 L56 108 L50 148 L80 162 L102 142 L102 352 Q102 358 108 358 L192 358 Q198 358 198 352 L198 142 L220 162 L250 148 L244 108 L220 82 L202 58 Z" fill="url(#teeG)"/>
+            <ellipse cx="150" cy="64" rx="30" ry="9" fill="#8E1414"/>
+            <ellipse cx="150" cy="62" rx="26" ry="6" fill="#F4F1EB" opacity="0.9"/>
+            <ellipse cx="150" cy="366" rx="72" ry="5" fill="#000" opacity="0.12"/>
+          </svg>
+        </div>
+        <div class="cat-content">
+          <h3>Shirts</h3>
+          <p>Heavyweight tees & crisp cotton</p>
+          <span class="go">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#shop" class="cat-card reveal" data-filter="pants">
+        <div class="cat-art">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="400" fill="#EFEBE2"/>
+            <path d="M88 70 L212 70 L215 385 L160 385 L155 200 L145 200 L140 385 L85 385 Z" fill="#000" opacity="0.06"/>
+            <rect x="88" y="48" width="124" height="14" fill="#5C4736"/>
+            <circle cx="104" cy="55" r="3.5" fill="#3A2C20"/>
+            <circle cx="150" cy="55" r="3.5" fill="#3A2C20"/>
+            <circle cx="196" cy="55" r="3.5" fill="#3A2C20"/>
+            <rect x="102" y="48" width="4" height="10" fill="#4A3928"/>
+            <rect x="148" y="48" width="4" height="10" fill="#4A3928"/>
+            <rect x="194" y="48" width="4" height="10" fill="#4A3928"/>
+            <path d="M88 62 L88 375 Q88 382 96 382 L138 382 Q146 382 145 375 L146 62 Z" fill="#6B5442"/>
+            <path d="M212 62 L212 375 Q212 382 204 382 L162 382 Q154 382 155 375 L154 62 Z" fill="#6B5442"/>
+            <line x1="116" y1="70" x2="120" y2="372" stroke="#4A3928" stroke-width="1.6" opacity="0.55"/>
+            <line x1="184" y1="70" x2="180" y2="372" stroke="#4A3928" stroke-width="1.6" opacity="0.55"/>
+          </svg>
+        </div>
+        <div class="cat-content">
+          <h3>Pants</h3>
+          <p>Tailored wide-leg & relaxed fits</p>
+          <span class="go">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#shop" class="cat-card reveal" data-filter="jackets">
+        <div class="cat-art">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="lthrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2A2A2A"/><stop offset="50%" stop-color="#0E0E0E"/><stop offset="100%" stop-color="#1A1A1A"/></linearGradient></defs>
+            <rect width="300" height="400" fill="#F2F2F2"/>
+            <path d="M100 78 L64 108 L58 200 L92 212 L92 372 L208 372 L208 212 L242 200 L236 108 L200 78 Z" fill="url(#lthrG)"/>
+            <path d="M100 78 L128 88 L152 132 L120 112 Z" fill="#1F1F1F"/>
+            <path d="M200 78 L172 88 L148 132 L180 112 Z" fill="#1F1F1F"/>
+            <line x1="150" y1="132" x2="150" y2="368" stroke="#9A9A9A" stroke-width="2.5"/>
+            <line x1="148" y1="132" x2="148" y2="368" stroke="#CFCFCF" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="108" y1="235" x2="132" y2="258" stroke="#9A9A9A" stroke-width="2"/>
+            <line x1="192" y1="235" x2="168" y2="258" stroke="#9A9A9A" stroke-width="2"/>
+            <rect x="92" y="360" width="116" height="14" fill="#0A0A0A"/>
+          </svg>
+        </div>
+        <div class="cat-content">
+          <h3>Jackets</h3>
+          <p>Leather, bombers & denim</p>
+          <span class="go">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#shop" class="cat-card reveal" data-filter="hoodies">
+        <div class="cat-art">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="hoodG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#25355A"/><stop offset="100%" stop-color="#131F3A"/></linearGradient></defs>
+            <rect width="300" height="400" fill="#E7E7E7"/>
+            <path d="M96 92 L60 122 L50 195 L92 210 L92 358 Q92 364 98 364 L202 364 Q208 364 208 358 L208 210 L250 195 L240 122 L204 92 Z" fill="url(#hoodG)"/>
+            <path d="M96 92 Q150 34 204 92 Q170 112 150 100 Q130 112 96 92 Z" fill="#1B2945"/>
+            <path d="M118 262 L182 262 L182 300 L118 300 Z" fill="#16223E"/>
+            <circle cx="140" cy="106" r="3.5" fill="#DCDCDC"/>
+            <circle cx="160" cy="106" r="3.5" fill="#DCDCDC"/>
+            <rect x="92" y="352" width="116" height="14" fill="#0F1A30"/>
+          </svg>
+        </div>
+        <div class="cat-content">
+          <h3>Hoodies</h3>
+          <p>Oversized & fleece-lined comfort</p>
+          <span class="go">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="shop" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow reveal">The Drop</p>
+        <h2 class="reveal">Featured Pieces</h2>
+      </div>
+      <div class="filters reveal" id="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="shirts">Shirts</button>
+        <button class="chip" data-filter="pants">Pants</button>
+        <button class="chip" data-filter="jackets">Jackets</button>
+        <button class="chip" data-filter="hoodies">Hoodies</button>
+      </div>
+    </div>
+    <div class="grid-products" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="story">
+  <div class="container editorial">
+    <div class="ed-visual reveal">
+      <span class="mono">C.</span>
+      <div class="badge-float">
+        <span>Crafted in Pakistan</span>
+        <b>Since 2026</b>
+      </div>
+    </div>
+    <div class="ed-text">
+      <p class="eyebrow reveal">The Coolism Vibe</p>
+      <h2 class="reveal">Luxury that doesn't <em>try hard.</em></h2>
+      <p class="reveal">Coolism was born from a simple frustration — everything either shouted or disappeared. So we built a house of quiet confidence: deep royal blues, off-white calm, and cuts that let you breathe.</p>
+      <ul class="ed-list">
+        <li class="reveal"><span class="tick">✓</span><span>Heavyweight 320 GSM cotton & premium blends</span></li>
+        <li class="reveal"><span class="tick">✓</span><span>Small-batch production — no mass warehouse waste</span></li>
+        <li class="reveal"><span class="tick">✓</span><span>Hand-finished seams and reinforced stitching</span></li>
+        <li class="reveal"><span class="tick">✓</span><span>Delivered to your door in 48 hours, nationwide</span></li>
+      </ul>
+      <a href="#shop" class="btn btn-line reveal">Discover the Craft <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container values">
+    <div class="value reveal">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></div>
+      <h3>Cash on Delivery</h3>
+      <p>Pay when it reaches your hands. Available in every major city and most towns across Pakistan.</p>
+    </div>
+    <div class="value reveal">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 7h13l5 5v5h-3"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/></svg></div>
+      <h3>48-Hour Delivery</h3>
+      <p>Dispatched within 24 hours. Karachi, Lahore and Islamabad receive orders the very next day.</p>
+    </div>
+    <div class="value reveal">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></div>
+      <h3>14-Day Exchange</h3>
+      <p>Doesn't sit right? Swap the size or style within 14 days — no awkward questions asked.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0" id="contact">
+  <div class="container">
+    <div class="news reveal">
+      <p class="eyebrow">The Inner Circle</p>
+      <h2>Get first access to every drop.</h2>
+      <p>Join the list for early releases, private sales and 10% off your first order.</p>
+      <form class="news-form" id="newsForm">
+        <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="#" class="logo"><span class="dot"></span>COOL<em>ISM</em></a>
+        <p>Where style relaxes. Premium clothing crafted for people who prefer quiet confidence over loud logos.</p>
+        <div class="f-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Shirts</a></li>
+          <li><a href="#shop">Pants</a></li>
+          <li><a href="#shop">Jackets</a></li>
+          <li><a href="#shop">Hoodies</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns & Exchange</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 Coolism. All rights reserved.</span>
+      <span>Karachi · Lahore · Islamabad — Prices in PKR</span>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="cartDrawer" aria-label="Shopping bag">
+  <div class="drawer-head">
+    <h3>Your Bag</h3>
+    <button class="x" id="cartClose" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot">
+    <div class="total-row"><span>Subtotal</span><b id="cartTotal">Rs 0</b></div>
+    <p class="note">Shipping calculated at checkout. Free over Rs 5,000.</p>
+    <button class="btn btn-gold" id="checkoutBtn">Proceed to Checkout <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</aside>
+
+<div class="modal-backdrop" id="authModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Account">
+    <div class="modal-art">
+      <a href="#" class="logo"><span class="dot"></span>COOL<em>ISM</em></a>
+      <h3>Where style <em>relaxes.</em></h3>
+      <p>Join the Coolism circle for early access to drops, member pricing, and a wardrobe that never shouts.</p>
+      <div class="quote">Members save 10% — always</div>
+    </div>
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="tabs">
+        <button data-tab="login" class="active">Login</button>
+        <button data-tab="signup">Sign Up</button>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <h2 class="panel-title">Welcome back</h2>
+        <p class="panel-sub">Sign in to continue your collection.</p>
+        <div class="field" data-field>
+          <label for="li-email">Email Address</label>
+          <input id="li-email" type="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="msg">Please enter a valid email address.</span>
+        </div>
+        <div class="field" data-field>
+          <label for="li-pass">Password</label>
+          <input id="li-pass" type="password" placeholder="••••••••" autocomplete="current-password" />
+          <span class="msg">Password must be at least 6 characters.</span>
+        </div>
+        <div class="form-foot">
+          <label><input type="checkbox" checked /> Remember me</label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-gold">Sign In</button>
+        <div class="divider">OR</div>
+        <div class="social-row">
+          <button type="button" data-social="Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg> Google
+          </button>
+          <button type="button" data-social="Apple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c1.5 0 2.5 1 2.5 2.5S13 8 12 8s-2.5-1-2.5-2.5S10.5 3 12 3z"/><path d="M6 20c0-4 2-7 6-7s6 3 6 7"/></svg> Apple
+          </button>
+        </div>
+      </form>
+
+      <form id="signupForm" novalidate hidden>
+        <h2 class="panel-title">Create your account</h2>
+        <p class="panel-sub">It takes less than a minute.</p>
+        <div class="row-2">
+          <div class="field" data-field>
+            <label for="su-first">First Name</label>
+            <input id="su-first" type="text" placeholder="Ali" autocomplete="given-name" />
+            <span class="msg">Please enter your first name.</span>
+          </div>
+          <div class="field" data-field>
+            <label for="su-last">Last Name</label>
+            <input id="su-last" type="text" placeholder="Raza" autocomplete="family-name" />
+            <span class="msg">Please enter your last name.</span>
+          </div>
+        </div>
+        <div class="field" data-field>
+          <label for="su-email">Email Address</label>
+          <input id="su-email" type="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="msg">Please enter a valid email address.</span>
+        </div>
+        <div class="field" data-field>
+          <label for="su-phone">Mobile Number</label>
+          <input id="su-phone" type="tel" placeholder="03XX XXXXXXX" autocomplete="tel" />
+          <span class="msg">Enter a valid Pakistani mobile number (11 digits).</span>
+        </div>
+        <div class="field" data-field>
+          <label for="su-pass">Password</label>
+          <input id="su-pass" type="password" placeholder="Minimum 6 characters" autocomplete="new-password" />
+          <span class="msg">Password must be at least 6 characters.</span>
+        </div>
+        <div class="form-foot">
+          <label><input type="checkbox" id="su-terms" /> I agree to the Terms & Privacy Policy</label>
+        </div>
+        <button type="submit" class="btn btn-gold">Create Account</button>
+        <div class="divider">OR</div>
+        <div class="social-row">
+          <button type="button" data-social="Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg> Google
+          </button>
+          <button type="button" data-social="Apple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c1.5 0 2.5 1 2.5 2.5S13 8 12 8s-2.5-1-2.5-2.5S10.5 3 12 3z"/><path d="M6 20c0-4 2-7 6-7s6 3 6 7"/></svg> Apple
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="dot"></span><span id="toastMsg">Added to bag</span></div>
+
+<script src="app.js"></script>
+</body>
+</html>
