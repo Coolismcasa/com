@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   COOLISM — App Logic (with Product Detail Modal)
+   COOLISM — App Logic
    ═══════════════════════════════════════════════════════════ */
 
 const CATEGORIES = {
@@ -9,15 +9,6 @@ const CATEGORIES = {
   hoodies: { label: 'Hoodies', color1: '#25355A', color2: '#131F3A' }
 };
 
-/* ───────── PRODUCTS ─────────
-   Har product mein ab yeh fields hain:
-   - desc:   poora description (detail page ke liye)
-   - sizes:  available sizes
-   - colors: available colours (name + hex)
-   - fabric: kapre ki tafseel
-   - care:   washing instructions
-   - sku:    product code
-*/
 const PRODUCTS = [
   {
     name: 'Classic Red Tee',
@@ -68,7 +59,7 @@ const PRODUCTS = [
     name: 'Relaxed Linen Pants',
     cat: 'pants',
     price: 4290, old: null, tag: null,
-    desc: 'Breathable pure linen with a soft elasticated back. Made for Karachi summers — light, airy, and comfortable all day long. Falls straight from the hip with a clean hem.',
+    desc: 'Breathable pure linen with a soft elasticated back. Made for Karachi summers — light, airy, and comfortable all day long.',
     sizes: ['30','32','34','36'],
     colors: [
       { name: 'Sand', hex: '#D6C7A8' },
@@ -171,7 +162,6 @@ function cartVisual(p) {
 
 let io = null;
 
-/* ───────── RENDER PRODUCT GRID ───────── */
 const grid = document.getElementById('productGrid');
 
 function renderProducts(filter = 'all') {
@@ -202,7 +192,6 @@ function renderProducts(filter = 'all') {
 
 renderProducts();
 
-/* ───────── FILTERS ───────── */
 document.getElementById('filters').addEventListener('click', e => {
   const chip = e.target.closest('.chip');
   if (!chip) return;
@@ -221,9 +210,7 @@ document.querySelectorAll('.cat-card').forEach(card => {
   });
 });
 
-/* ═══════════════════════════════════════════
-   PRODUCT DETAIL MODAL  ← NEW
-   ═══════════════════════════════════════════ */
+/* ═══════ PRODUCT DETAIL MODAL ═══════ */
 const detailModal  = document.getElementById('detailModal');
 const detailMedia  = document.getElementById('detailMedia');
 const detailCat    = document.getElementById('detailCat');
@@ -249,10 +236,7 @@ function openDetail(productName) {
   detailState.color = p.colors[0].name;
   detailState.qty   = 1;
 
-  // Media
   detailMedia.innerHTML = productVisual(p, 'detail-placeholder');
-
-  // Text
   detailCat.textContent   = getCat(p.cat).label;
   detailName.textContent  = p.name;
   detailPrice.innerHTML   = `<span class="now">${money(p.price)}</span>${p.old ? `<span class="was">${money(p.old)}</span>` : ''}`;
@@ -261,12 +245,10 @@ function openDetail(productName) {
   detailCare.textContent   = p.care || '—';
   detailSku.textContent    = p.sku || '—';
 
-  // Sizes
   detailSizes.innerHTML = p.sizes.map(s => `
     <button class="opt-btn ${s === detailState.size ? 'active' : ''}" data-size="${s}">${s}</button>
   `).join('');
 
-  // Colors
   detailColors.innerHTML = p.colors.map(c => `
     <button class="color-btn ${c.name === detailState.color ? 'active' : ''}"
             data-color="${c.name}" title="${c.name}">
@@ -277,7 +259,6 @@ function openDetail(productName) {
 
   detailQtyVal.textContent = detailState.qty;
 
-  // Show
   detailModal.classList.add('show');
   document.body.style.overflow = 'hidden';
 }
@@ -287,9 +268,7 @@ function closeDetail() {
   document.body.style.overflow = '';
 }
 
-/* Click on a card opens the detail */
 grid.addEventListener('click', e => {
-  // Add-to-bag button inside the card → quick add (default size)
   const quick = e.target.closest('.quick-add');
   if (quick) {
     e.stopPropagation();
@@ -305,12 +284,10 @@ grid.addEventListener('click', e => {
     }, 1400);
     return;
   }
-  // Anywhere else on the card → open detail
   const card = e.target.closest('.card');
   if (card && card.dataset.product) openDetail(card.dataset.product);
 });
 
-/* Size buttons */
 detailSizes.addEventListener('click', e => {
   const btn = e.target.closest('[data-size]');
   if (!btn) return;
@@ -318,7 +295,6 @@ detailSizes.addEventListener('click', e => {
   detailSizes.querySelectorAll('.opt-btn').forEach(b => b.classList.toggle('active', b === btn));
 });
 
-/* Color buttons */
 detailColors.addEventListener('click', e => {
   const btn = e.target.closest('[data-color]');
   if (!btn) return;
@@ -326,7 +302,6 @@ detailColors.addEventListener('click', e => {
   detailColors.querySelectorAll('.color-btn').forEach(b => b.classList.toggle('active', b === btn));
 });
 
-/* Quantity */
 document.getElementById('qtyMinus').addEventListener('click', () => {
   if (detailState.qty > 1) {
     detailState.qty--;
@@ -338,23 +313,19 @@ document.getElementById('qtyPlus').addEventListener('click', () => {
   detailQtyVal.textContent = detailState.qty;
 });
 
-/* Add to Bag from detail */
 detailAddBtn.addEventListener('click', () => {
   if (!detailState.product) return;
   addToCart(detailState.product, detailState.size, detailState.color, detailState.qty);
   closeDetail();
 });
 
-/* Close detail */
 document.getElementById('detailClose').addEventListener('click', closeDetail);
 detailModal.addEventListener('click', e => { if (e.target === detailModal) closeDetail(); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeDetail(); closeAuth(); closeCart(); closeMobile(); }
 });
 
-/* ═══════════════════════════════════════════
-   CART  (now tracks size + color)
-   ═══════════════════════════════════════════ */
+/* ═══════ CART ═══════ */
 let cart = [];
 const cartDrawer = document.getElementById('cartDrawer');
 const overlay    = document.getElementById('overlay');
@@ -378,11 +349,8 @@ const lineKey = i => `${i.name}|${i.size}|${i.color}`;
 function addToCart(product, size, color, qty) {
   const key = `${product.name}|${size}|${color}`;
   const existing = cart.find(i => lineKey(i) === key);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cart.push({ ...product, size, color, qty });
-  }
+  if (existing) existing.qty += qty;
+  else cart.push({ ...product, size, color, qty });
   renderCart();
   toast(`${product.name} (${size} · ${color}) added to bag`);
 }
@@ -435,9 +403,7 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
 
 renderCart();
 
-/* ═══════════════════════════════════════════
-   AUTH MODAL
-   ═══════════════════════════════════════════ */
+/* ═══════ AUTH MODAL ═══════ */
 const authModal = document.getElementById('authModal');
 const loginForm = document.getElementById('loginForm');
 const signupForm = document.getElementById('signupForm');
@@ -521,9 +487,6 @@ signupForm.addEventListener('submit', e => {
 document.querySelectorAll('[data-social]').forEach(btn =>
   btn.addEventListener('click', () => toast(`${btn.dataset.social} sign-in coming soon`)));
 
-/* ═══════════════════════════════════════════
-   NEWSLETTER
-   ═══════════════════════════════════════════ */
 document.getElementById('newsForm').addEventListener('submit', e => {
   e.preventDefault();
   const input = e.target.querySelector('input');
@@ -532,9 +495,6 @@ document.getElementById('newsForm').addEventListener('submit', e => {
   input.value = '';
 });
 
-/* ═══════════════════════════════════════════
-   MOBILE MENU
-   ═══════════════════════════════════════════ */
 const mobileMenu = document.getElementById('mobileMenu');
 function closeMobile() { mobileMenu.classList.remove('open'); }
 document.getElementById('hamburger').addEventListener('click', () => {
@@ -543,17 +503,11 @@ document.getElementById('hamburger').addEventListener('click', () => {
 mobileMenu.querySelectorAll('a:not(#mobileLogin)').forEach(a =>
   a.addEventListener('click', closeMobile));
 
-/* ═══════════════════════════════════════════
-   HEADER SCROLL
-   ═══════════════════════════════════════════ */
 const navWrap = document.getElementById('navWrap');
 window.addEventListener('scroll', () => {
   navWrap.classList.toggle('scrolled', window.scrollY > 20);
 }, { passive: true });
 
-/* ═══════════════════════════════════════════
-   TOAST
-   ═══════════════════════════════════════════ */
 let toastTimer;
 function toast(msg) {
   const el = document.getElementById('toast');
@@ -563,9 +517,6 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
 }
 
-/* ═══════════════════════════════════════════
-   SCROLL REVEAL
-   ═══════════════════════════════════════════ */
 function observeReveals() {
   const items = document.querySelectorAll('.reveal:not(.in)');
   if (!('IntersectionObserver' in window)) {
@@ -594,8 +545,5 @@ window.addEventListener('load', () => {
   });
 });
 
-/* ═══════════════════════════════════════════
-   MARQUEE
-   ═══════════════════════════════════════════ */
 const mq = document.getElementById('marquee');
 mq.innerHTML += mq.innerHTML;
