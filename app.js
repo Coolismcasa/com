@@ -1,10 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   COOLISM — App Logic
-   Add a product = add one line to PRODUCTS below.
-   Example:
-     { name: 'Linen Shirt', cat: 'shirts', price: 3490, old: 4290, tag: 'New' },
-   Add `image: 'shirt.jpg'` to a product to use a real photo
-   (put the photo in the same folder).
+   COOLISM — App Logic (with Product Detail Modal)
    ═══════════════════════════════════════════════════════════ */
 
 const CATEGORIES = {
@@ -14,31 +9,151 @@ const CATEGORIES = {
   hoodies: { label: 'Hoodies', color1: '#25355A', color2: '#131F3A' }
 };
 
+/* ───────── PRODUCTS ─────────
+   Har product mein ab yeh fields hain:
+   - desc:   poora description (detail page ke liye)
+   - sizes:  available sizes
+   - colors: available colours (name + hex)
+   - fabric: kapre ki tafseel
+   - care:   washing instructions
+   - sku:    product code
+*/
 const PRODUCTS = [
-  { name: 'Classic Red Tee',           cat: 'shirts',  price: 2490,  old: 3200,  tag: 'New'        },
-  { name: 'Royal Oxford Shirt',        cat: 'shirts',  price: 4990,  old: null,  tag: null         },
-  { name: 'Pleated Wide-Leg Trousers', cat: 'pants',   price: 5890,  old: 6990,  tag: 'Bestseller' },
-  { name: 'Relaxed Linen Pants',       cat: 'pants',   price: 4290,  old: null,  tag: null         },
-  { name: 'Moto Leather Jacket',       cat: 'jackets', price: 18900, old: 22500, tag: 'Limited'    },
-  { name: 'Navy Bomber Jacket',        cat: 'jackets', price: 11900, old: null,  tag: null         },
-  { name: 'Oversized Navy Hoodie',     cat: 'hoodies', price: 6490,  old: 7990,  tag: 'Bestseller' },
-  { name: 'Fleece-Lined Zip Hoodie',   cat: 'hoodies', price: 7290,  old: null,  tag: 'New'        }
+  {
+    name: 'Classic Red Tee',
+    cat: 'shirts',
+    price: 2490, old: 3200, tag: 'New',
+    desc: 'A relaxed-fit tee cut from heavyweight 320 GSM cotton. Drop shoulders, ribbed collar, and a soft hand-feel that only gets better with every wash. Made for everyday wear, styled for anything.',
+    sizes: ['S','M','L','XL','XXL'],
+    colors: [
+      { name: 'Red', hex: '#E33A3A' },
+      { name: 'Navy', hex: '#0B1A30' },
+      { name: 'Off-White', hex: '#F1EFE9' }
+    ],
+    fabric: '100% Combed Cotton — 320 GSM',
+    care: 'Machine wash cold · Do not bleach · Iron on reverse',
+    sku: 'CLM-SH-001'
+  },
+  {
+    name: 'Royal Oxford Shirt',
+    cat: 'shirts',
+    price: 4990, old: null, tag: null,
+    desc: 'A crisp Oxford weave with mother-of-pearl buttons and a clean cutaway collar. Structured enough for the office, soft enough for the weekend. Runs true to size.',
+    sizes: ['S','M','L','XL'],
+    colors: [
+      { name: 'White', hex: '#F9F8F6' },
+      { name: 'Sky', hex: '#A8C4E0' },
+      { name: 'Navy', hex: '#0B1A30' }
+    ],
+    fabric: '100% Egyptian Cotton Oxford',
+    care: 'Machine wash warm · Tumble dry low',
+    sku: 'CLM-SH-002'
+  },
+  {
+    name: 'Pleated Wide-Leg Trousers',
+    cat: 'pants',
+    price: 5890, old: 6990, tag: 'Bestseller',
+    desc: 'Tailored with a single front pleat and a wide, flowing leg. Falls beautifully from the hip and moves with you. Sitting high on the waist for a timeless silhouette.',
+    sizes: ['30','32','34','36','38'],
+    colors: [
+      { name: 'Brown', hex: '#6B5442' },
+      { name: 'Charcoal', hex: '#2A2A2A' },
+      { name: 'Cream', hex: '#E4DCC9' }
+    ],
+    fabric: 'Poly-wool blend — mid-weight',
+    care: 'Dry clean only',
+    sku: 'CLM-PT-001'
+  },
+  {
+    name: 'Relaxed Linen Pants',
+    cat: 'pants',
+    price: 4290, old: null, tag: null,
+    desc: 'Breathable pure linen with a soft elasticated back. Made for Karachi summers — light, airy, and comfortable all day long. Falls straight from the hip with a clean hem.',
+    sizes: ['30','32','34','36'],
+    colors: [
+      { name: 'Sand', hex: '#D6C7A8' },
+      { name: 'Off-White', hex: '#F1EFE9' },
+      { name: 'Sage', hex: '#9CAE93' }
+    ],
+    fabric: '100% European Linen',
+    care: 'Machine wash cold · Line dry',
+    sku: 'CLM-PT-002'
+  },
+  {
+    name: 'Moto Leather Jacket',
+    cat: 'jackets',
+    price: 18900, old: 22500, tag: 'Limited',
+    desc: 'A classic asymmetrical biker silhouette in full-grain sheep leather. Heavy-duty YKK zips, quilted shoulder panels, and a soft viscose lining. Ages beautifully with every wear.',
+    sizes: ['S','M','L','XL'],
+    colors: [
+      { name: 'Black', hex: '#0E0E0E' },
+      { name: 'Espresso', hex: '#3A2C20' }
+    ],
+    fabric: 'Full-grain sheep leather · Viscose lining',
+    care: 'Wipe clean · Condition leather twice a year',
+    sku: 'CLM-JK-001'
+  },
+  {
+    name: 'Navy Bomber Jacket',
+    cat: 'jackets',
+    price: 11900, old: null, tag: null,
+    desc: 'Lightweight nylon bomber with ribbed cuffs and hem. Water-resistant shell, hidden interior pocket, and a clean minimal finish. The jacket you reach for every evening.',
+    sizes: ['S','M','L','XL','XXL'],
+    colors: [
+      { name: 'Navy', hex: '#0B1A30' },
+      { name: 'Olive', hex: '#4A5240' },
+      { name: 'Black', hex: '#111111' }
+    ],
+    fabric: 'Recycled nylon shell · Quilted lining',
+    care: 'Machine wash cold · Hang dry',
+    sku: 'CLM-JK-002'
+  },
+  {
+    name: 'Oversized Navy Hoodie',
+    cat: 'hoodies',
+    price: 6490, old: 7990, tag: 'Bestseller',
+    desc: 'Cut with a dropped shoulder and a boxy fit that drapes perfectly. Brushed fleece inside for softness, double-layer hood for structure. The one hoodie you\'ll live in.',
+    sizes: ['S','M','L','XL','XXL'],
+    colors: [
+      { name: 'Navy', hex: '#131F3A' },
+      { name: 'Charcoal', hex: '#3A3A3A' },
+      { name: 'Off-White', hex: '#F1EFE9' }
+    ],
+    fabric: '85% Cotton / 15% Poly · 400 GSM fleece',
+    care: 'Machine wash cold · Tumble dry low',
+    sku: 'CLM-HD-001'
+  },
+  {
+    name: 'Fleece-Lined Zip Hoodie',
+    cat: 'hoodies',
+    price: 7290, old: null, tag: 'New',
+    desc: 'Full-zip hoodie with a double-lined hood and a soft brushed interior. Two side pockets with hidden zips. Perfect layering piece for cool mornings and late nights.',
+    sizes: ['S','M','L','XL'],
+    colors: [
+      { name: 'Navy', hex: '#131F3A' },
+      { name: 'Grey', hex: '#8A8A8A' },
+      { name: 'Black', hex: '#0E0E0E' }
+    ],
+    fabric: 'Cotton-poly blend · Fleece interior',
+    care: 'Machine wash cold · Tumble dry low',
+    sku: 'CLM-HD-002'
+  }
 ];
 
 const money = n => 'Rs ' + n.toLocaleString('en-PK');
 const getCat = key => CATEGORIES[key] || { label: key, color1: '#333', color2: '#111' };
 
-function productVisual(p) {
+function productVisual(p, cls = 'card-placeholder') {
   const c = getCat(p.cat);
   if (p.image) {
     return `<img src="${p.image}" alt="${p.name}" loading="lazy"
               onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-            <div class="card-placeholder" style="display:none;background:linear-gradient(140deg,${c.color1},${c.color2})">
+            <div class="${cls}" style="display:none;background:linear-gradient(140deg,${c.color1},${c.color2})">
               <span class="letter">${p.name.charAt(0)}</span>
               <span class="cat-badge">${c.label}</span>
             </div>`;
   }
-  return `<div class="card-placeholder" style="background:linear-gradient(140deg,${c.color1},${c.color2})">
+  return `<div class="${cls}" style="background:linear-gradient(140deg,${c.color1},${c.color2})">
             <span class="letter">${p.name.charAt(0)}</span>
             <span class="cat-badge">${c.label}</span>
           </div>`;
@@ -56,6 +171,7 @@ function cartVisual(p) {
 
 let io = null;
 
+/* ───────── RENDER PRODUCT GRID ───────── */
 const grid = document.getElementById('productGrid');
 
 function renderProducts(filter = 'all') {
@@ -65,7 +181,7 @@ function renderProducts(filter = 'all') {
     return;
   }
   grid.innerHTML = list.map((p, i) => `
-    <article class="card reveal" style="transition-delay:${i * 50}ms">
+    <article class="card reveal" data-product="${p.name}" style="transition-delay:${i * 50}ms">
       <div class="card-media">
         ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
         ${productVisual(p)}
@@ -86,6 +202,7 @@ function renderProducts(filter = 'all') {
 
 renderProducts();
 
+/* ───────── FILTERS ───────── */
 document.getElementById('filters').addEventListener('click', e => {
   const chip = e.target.closest('.chip');
   if (!chip) return;
@@ -104,6 +221,140 @@ document.querySelectorAll('.cat-card').forEach(card => {
   });
 });
 
+/* ═══════════════════════════════════════════
+   PRODUCT DETAIL MODAL  ← NEW
+   ═══════════════════════════════════════════ */
+const detailModal  = document.getElementById('detailModal');
+const detailMedia  = document.getElementById('detailMedia');
+const detailCat    = document.getElementById('detailCat');
+const detailName   = document.getElementById('detailName');
+const detailPrice  = document.getElementById('detailPrice');
+const detailDesc   = document.getElementById('detailDesc');
+const detailSizes  = document.getElementById('detailSizes');
+const detailColors = document.getElementById('detailColors');
+const detailQtyVal = document.getElementById('qtyValue');
+const detailFabric = document.getElementById('detailFabric');
+const detailCare   = document.getElementById('detailCare');
+const detailSku    = document.getElementById('detailSku');
+const detailAddBtn = document.getElementById('detailAddBtn');
+
+let detailState = { product: null, size: null, color: null, qty: 1 };
+
+function openDetail(productName) {
+  const p = PRODUCTS.find(x => x.name === productName);
+  if (!p) return;
+
+  detailState.product = p;
+  detailState.size  = p.sizes[0];
+  detailState.color = p.colors[0].name;
+  detailState.qty   = 1;
+
+  // Media
+  detailMedia.innerHTML = productVisual(p, 'detail-placeholder');
+
+  // Text
+  detailCat.textContent   = getCat(p.cat).label;
+  detailName.textContent  = p.name;
+  detailPrice.innerHTML   = `<span class="now">${money(p.price)}</span>${p.old ? `<span class="was">${money(p.old)}</span>` : ''}`;
+  detailDesc.textContent  = p.desc || 'A premium piece from the Coolism collection.';
+  detailFabric.textContent = p.fabric || '—';
+  detailCare.textContent   = p.care || '—';
+  detailSku.textContent    = p.sku || '—';
+
+  // Sizes
+  detailSizes.innerHTML = p.sizes.map(s => `
+    <button class="opt-btn ${s === detailState.size ? 'active' : ''}" data-size="${s}">${s}</button>
+  `).join('');
+
+  // Colors
+  detailColors.innerHTML = p.colors.map(c => `
+    <button class="color-btn ${c.name === detailState.color ? 'active' : ''}"
+            data-color="${c.name}" title="${c.name}">
+      <span class="swatch" style="background:${c.hex}"></span>
+      <span class="color-name">${c.name}</span>
+    </button>
+  `).join('');
+
+  detailQtyVal.textContent = detailState.qty;
+
+  // Show
+  detailModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  detailModal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+/* Click on a card opens the detail */
+grid.addEventListener('click', e => {
+  // Add-to-bag button inside the card → quick add (default size)
+  const quick = e.target.closest('.quick-add');
+  if (quick) {
+    e.stopPropagation();
+    const p = PRODUCTS.find(x => x.name === quick.dataset.name);
+    if (!p) return;
+    addToCart(p, p.sizes[0], p.colors[0].name, 1);
+    const original = quick.textContent;
+    quick.textContent = 'Added ✓';
+    quick.classList.add('added');
+    setTimeout(() => {
+      quick.textContent = original;
+      quick.classList.remove('added');
+    }, 1400);
+    return;
+  }
+  // Anywhere else on the card → open detail
+  const card = e.target.closest('.card');
+  if (card && card.dataset.product) openDetail(card.dataset.product);
+});
+
+/* Size buttons */
+detailSizes.addEventListener('click', e => {
+  const btn = e.target.closest('[data-size]');
+  if (!btn) return;
+  detailState.size = btn.dataset.size;
+  detailSizes.querySelectorAll('.opt-btn').forEach(b => b.classList.toggle('active', b === btn));
+});
+
+/* Color buttons */
+detailColors.addEventListener('click', e => {
+  const btn = e.target.closest('[data-color]');
+  if (!btn) return;
+  detailState.color = btn.dataset.color;
+  detailColors.querySelectorAll('.color-btn').forEach(b => b.classList.toggle('active', b === btn));
+});
+
+/* Quantity */
+document.getElementById('qtyMinus').addEventListener('click', () => {
+  if (detailState.qty > 1) {
+    detailState.qty--;
+    detailQtyVal.textContent = detailState.qty;
+  }
+});
+document.getElementById('qtyPlus').addEventListener('click', () => {
+  detailState.qty++;
+  detailQtyVal.textContent = detailState.qty;
+});
+
+/* Add to Bag from detail */
+detailAddBtn.addEventListener('click', () => {
+  if (!detailState.product) return;
+  addToCart(detailState.product, detailState.size, detailState.color, detailState.qty);
+  closeDetail();
+});
+
+/* Close detail */
+document.getElementById('detailClose').addEventListener('click', closeDetail);
+detailModal.addEventListener('click', e => { if (e.target === detailModal) closeDetail(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeDetail(); closeAuth(); closeCart(); closeMobile(); }
+});
+
+/* ═══════════════════════════════════════════
+   CART  (now tracks size + color)
+   ═══════════════════════════════════════════ */
 let cart = [];
 const cartDrawer = document.getElementById('cartDrawer');
 const overlay    = document.getElementById('overlay');
@@ -122,14 +373,18 @@ function closeCart() {
   document.body.style.overflow = '';
 }
 
-function addToCart(name) {
-  const product = PRODUCTS.find(p => p.name === name);
-  if (!product) return;
-  const line = cart.find(i => i.name === name);
-  if (line) line.qty += 1;
-  else cart.push({ ...product, qty: 1 });
+const lineKey = i => `${i.name}|${i.size}|${i.color}`;
+
+function addToCart(product, size, color, qty) {
+  const key = `${product.name}|${size}|${color}`;
+  const existing = cart.find(i => lineKey(i) === key);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ ...product, size, color, qty });
+  }
   renderCart();
-  toast(`${product.name} added to bag`);
+  toast(`${product.name} (${size} · ${color}) added to bag`);
 }
 
 function renderCart() {
@@ -154,31 +409,19 @@ function renderCart() {
       <div class="ci-thumb">${cartVisual(i)}</div>
       <div class="ci-info">
         <h4>${i.name}</h4>
+        <div class="ci-variant">${i.size} · ${i.color}</div>
         <div class="p">${money(i.price)} × ${i.qty}</div>
-        <button class="ci-remove" data-remove="${i.name}">Remove</button>
+        <button class="ci-remove" data-key="${lineKey(i)}">Remove</button>
       </div>
     </div>
   `).join('');
 }
 
 cartBody.addEventListener('click', e => {
-  const btn = e.target.closest('[data-remove]');
+  const btn = e.target.closest('[data-key]');
   if (!btn) return;
-  cart = cart.filter(i => i.name !== btn.dataset.remove);
+  cart = cart.filter(i => lineKey(i) !== btn.dataset.key);
   renderCart();
-});
-
-grid.addEventListener('click', e => {
-  const btn = e.target.closest('.quick-add');
-  if (!btn) return;
-  addToCart(btn.dataset.name);
-  const original = btn.textContent;
-  btn.textContent = 'Added ✓';
-  btn.classList.add('added');
-  setTimeout(() => {
-    btn.textContent = original;
-    btn.classList.remove('added');
-  }, 1400);
 });
 
 document.getElementById('cartBtn').addEventListener('click', openCart);
@@ -192,6 +435,9 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
 
 renderCart();
 
+/* ═══════════════════════════════════════════
+   AUTH MODAL
+   ═══════════════════════════════════════════ */
 const authModal = document.getElementById('authModal');
 const loginForm = document.getElementById('loginForm');
 const signupForm = document.getElementById('signupForm');
@@ -221,9 +467,6 @@ document.getElementById('mobileLogin').addEventListener('click', e => {
 });
 document.getElementById('modalClose').addEventListener('click', closeAuth);
 authModal.addEventListener('click', e => { if (e.target === authModal) closeAuth(); });
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeAuth(); closeCart(); closeMobile(); }
-});
 document.querySelectorAll('.tabs button').forEach(btn =>
   btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
 
@@ -278,6 +521,9 @@ signupForm.addEventListener('submit', e => {
 document.querySelectorAll('[data-social]').forEach(btn =>
   btn.addEventListener('click', () => toast(`${btn.dataset.social} sign-in coming soon`)));
 
+/* ═══════════════════════════════════════════
+   NEWSLETTER
+   ═══════════════════════════════════════════ */
 document.getElementById('newsForm').addEventListener('submit', e => {
   e.preventDefault();
   const input = e.target.querySelector('input');
@@ -286,6 +532,9 @@ document.getElementById('newsForm').addEventListener('submit', e => {
   input.value = '';
 });
 
+/* ═══════════════════════════════════════════
+   MOBILE MENU
+   ═══════════════════════════════════════════ */
 const mobileMenu = document.getElementById('mobileMenu');
 function closeMobile() { mobileMenu.classList.remove('open'); }
 document.getElementById('hamburger').addEventListener('click', () => {
@@ -294,11 +543,17 @@ document.getElementById('hamburger').addEventListener('click', () => {
 mobileMenu.querySelectorAll('a:not(#mobileLogin)').forEach(a =>
   a.addEventListener('click', closeMobile));
 
+/* ═══════════════════════════════════════════
+   HEADER SCROLL
+   ═══════════════════════════════════════════ */
 const navWrap = document.getElementById('navWrap');
 window.addEventListener('scroll', () => {
   navWrap.classList.toggle('scrolled', window.scrollY > 20);
 }, { passive: true });
 
+/* ═══════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════ */
 let toastTimer;
 function toast(msg) {
   const el = document.getElementById('toast');
@@ -308,6 +563,9 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
 }
 
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════ */
 function observeReveals() {
   const items = document.querySelectorAll('.reveal:not(.in)');
   if (!('IntersectionObserver' in window)) {
@@ -336,5 +594,8 @@ window.addEventListener('load', () => {
   });
 });
 
+/* ═══════════════════════════════════════════
+   MARQUEE
+   ═══════════════════════════════════════════ */
 const mq = document.getElementById('marquee');
 mq.innerHTML += mq.innerHTML;
