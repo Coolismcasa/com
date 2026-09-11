@@ -548,7 +548,6 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);positio
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 
-/* ═══════ PRODUCT DETAIL MODAL ═══════ */
 .detail-backdrop{
   position:fixed;inset:0;z-index:250;
   display:grid;place-items:center;padding:20px;
