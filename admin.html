@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin — Coolism Users</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="admin">
+
+<header class="nav-wrap" id="navWrap">
+  <div class="container nav">
+    <a href="index.html" class="logo"><span class="dot"></span>COOL<em>ISM</em></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#" class="active">Admin</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn-ghost" id="accountBtn">Login</button>
+    </div>
+  </div>
+</header>
+
+<section class="section" style="padding-top:60px">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Dashboard</p>
+        <h2>Users Table</h2>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box"><b id="userCount">0</b><span>Total Users</span></div>
+        <div class="stat-box"><b id="verifiedCount">0</b><span>Verified</span></div>
+      </div>
+    </div>
+
+    <div class="table-toolbar">
+      <input type="text" id="searchInput" placeholder="Search by name, email or phone..." />
+      <button class="btn btn-line" id="refreshBtn">Refresh</button>
+      <button class="btn btn-line" id="exportBtn">Export CSV</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="users-table" id="usersTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>UID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Provider</th>
+            <th>Verified</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody id="usersTbody">
+          <tr><td colspan="9" class="table-empty">Loading users…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="accessMsg" class="access-msg" hidden>
+      ⚠️ You must be signed in to view the users table.
+      <a href="index.html">Go to homepage</a> and log in first.
+    </div>
+  </div>
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
