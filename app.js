@@ -1,7 +1,27 @@
 /* ═══════════════════════════════════════════════════════════
-   COOLISM — App Logic
+   COOLISM — App Logic + Firebase Auth
    ═══════════════════════════════════════════════════════════ */
 
+/* ═══════════════════════════════════════════
+   ▸▸▸ PASTE YOUR FIREBASE CONFIG BELOW
+   From: Firebase Console → ⚙ Project settings → Your apps
+   Replace ALL six placeholder values with your real ones.
+   ═══════════════════════════════════════════ */
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY_HERE",
+  authDomain: "PASTE_YOUR_AUTH_DOMAIN_HERE",
+  projectId: "PASTE_YOUR_PROJECT_ID_HERE",
+  storageBucket: "PASTE_YOUR_STORAGE_BUCKET_HERE",
+  messagingSenderId: "PASTE_YOUR_SENDER_ID_HERE",
+  appId: "PASTE_YOUR_APP_ID_HERE"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+/* ═══════════════════════════════════════════
+   CATEGORIES + PRODUCTS
+   ═══════════════════════════════════════════ */
 const CATEGORIES = {
   shirts:  { label: 'Shirts',  color1: '#E33A3A', color2: '#A81E1E' },
   pants:   { label: 'Pants',   color1: '#8B6E54', color2: '#5C4736' },
@@ -11,120 +31,73 @@ const CATEGORIES = {
 
 const PRODUCTS = [
   {
-    name: 'Classic Red Tee',
-    cat: 'shirts',
-    price: 2490, old: 3200, tag: 'New',
-    desc: 'A relaxed-fit tee cut from heavyweight 320 GSM cotton. Drop shoulders, ribbed collar, and a soft hand-feel that only gets better with every wash. Made for everyday wear, styled for anything.',
+    name: 'Classic Red Tee', cat: 'shirts', price: 2490, old: 3200, tag: 'New',
+    desc: 'A relaxed-fit tee cut from heavyweight 320 GSM cotton. Drop shoulders, ribbed collar, and a soft hand-feel that only gets better with every wash.',
     sizes: ['S','M','L','XL','XXL'],
-    colors: [
-      { name: 'Red', hex: '#E33A3A' },
-      { name: 'Navy', hex: '#0B1A30' },
-      { name: 'Off-White', hex: '#F1EFE9' }
-    ],
+    colors: [{ name: 'Red', hex: '#E33A3A' }, { name: 'Navy', hex: '#0B1A30' }, { name: 'Off-White', hex: '#F1EFE9' }],
     fabric: '100% Combed Cotton — 320 GSM',
-    care: 'Machine wash cold · Do not bleach · Iron on reverse',
+    care: 'Machine wash cold · Do not bleach',
     sku: 'CLM-SH-001'
   },
   {
-    name: 'Royal Oxford Shirt',
-    cat: 'shirts',
-    price: 4990, old: null, tag: null,
-    desc: 'A crisp Oxford weave with mother-of-pearl buttons and a clean cutaway collar. Structured enough for the office, soft enough for the weekend. Runs true to size.',
+    name: 'Royal Oxford Shirt', cat: 'shirts', price: 4990, old: null, tag: null,
+    desc: 'A crisp Oxford weave with mother-of-pearl buttons and a clean cutaway collar.',
     sizes: ['S','M','L','XL'],
-    colors: [
-      { name: 'White', hex: '#F9F8F6' },
-      { name: 'Sky', hex: '#A8C4E0' },
-      { name: 'Navy', hex: '#0B1A30' }
-    ],
+    colors: [{ name: 'White', hex: '#F9F8F6' }, { name: 'Sky', hex: '#A8C4E0' }, { name: 'Navy', hex: '#0B1A30' }],
     fabric: '100% Egyptian Cotton Oxford',
     care: 'Machine wash warm · Tumble dry low',
     sku: 'CLM-SH-002'
   },
   {
-    name: 'Pleated Wide-Leg Trousers',
-    cat: 'pants',
-    price: 5890, old: 6990, tag: 'Bestseller',
-    desc: 'Tailored with a single front pleat and a wide, flowing leg. Falls beautifully from the hip and moves with you. Sitting high on the waist for a timeless silhouette.',
+    name: 'Pleated Wide-Leg Trousers', cat: 'pants', price: 5890, old: 6990, tag: 'Bestseller',
+    desc: 'Tailored with a single front pleat and a wide, flowing leg.',
     sizes: ['30','32','34','36','38'],
-    colors: [
-      { name: 'Brown', hex: '#6B5442' },
-      { name: 'Charcoal', hex: '#2A2A2A' },
-      { name: 'Cream', hex: '#E4DCC9' }
-    ],
+    colors: [{ name: 'Brown', hex: '#6B5442' }, { name: 'Charcoal', hex: '#2A2A2A' }, { name: 'Cream', hex: '#E4DCC9' }],
     fabric: 'Poly-wool blend — mid-weight',
     care: 'Dry clean only',
     sku: 'CLM-PT-001'
   },
   {
-    name: 'Relaxed Linen Pants',
-    cat: 'pants',
-    price: 4290, old: null, tag: null,
-    desc: 'Breathable pure linen with a soft elasticated back. Made for Karachi summers — light, airy, and comfortable all day long.',
+    name: 'Relaxed Linen Pants', cat: 'pants', price: 4290, old: null, tag: null,
+    desc: 'Breathable pure linen with a soft elasticated back.',
     sizes: ['30','32','34','36'],
-    colors: [
-      { name: 'Sand', hex: '#D6C7A8' },
-      { name: 'Off-White', hex: '#F1EFE9' },
-      { name: 'Sage', hex: '#9CAE93' }
-    ],
+    colors: [{ name: 'Sand', hex: '#D6C7A8' }, { name: 'Off-White', hex: '#F1EFE9' }, { name: 'Sage', hex: '#9CAE93' }],
     fabric: '100% European Linen',
     care: 'Machine wash cold · Line dry',
     sku: 'CLM-PT-002'
   },
   {
-    name: 'Moto Leather Jacket',
-    cat: 'jackets',
-    price: 18900, old: 22500, tag: 'Limited',
-    desc: 'A classic asymmetrical biker silhouette in full-grain sheep leather. Heavy-duty YKK zips, quilted shoulder panels, and a soft viscose lining. Ages beautifully with every wear.',
+    name: 'Moto Leather Jacket', cat: 'jackets', price: 18900, old: 22500, tag: 'Limited',
+    desc: 'A classic asymmetrical biker silhouette in full-grain sheep leather.',
     sizes: ['S','M','L','XL'],
-    colors: [
-      { name: 'Black', hex: '#0E0E0E' },
-      { name: 'Espresso', hex: '#3A2C20' }
-    ],
+    colors: [{ name: 'Black', hex: '#0E0E0E' }, { name: 'Espresso', hex: '#3A2C20' }],
     fabric: 'Full-grain sheep leather · Viscose lining',
-    care: 'Wipe clean · Condition leather twice a year',
+    care: 'Wipe clean · Condition twice a year',
     sku: 'CLM-JK-001'
   },
   {
-    name: 'Navy Bomber Jacket',
-    cat: 'jackets',
-    price: 11900, old: null, tag: null,
-    desc: 'Lightweight nylon bomber with ribbed cuffs and hem. Water-resistant shell, hidden interior pocket, and a clean minimal finish. The jacket you reach for every evening.',
+    name: 'Navy Bomber Jacket', cat: 'jackets', price: 11900, old: null, tag: null,
+    desc: 'Lightweight nylon bomber with ribbed cuffs and hem.',
     sizes: ['S','M','L','XL','XXL'],
-    colors: [
-      { name: 'Navy', hex: '#0B1A30' },
-      { name: 'Olive', hex: '#4A5240' },
-      { name: 'Black', hex: '#111111' }
-    ],
+    colors: [{ name: 'Navy', hex: '#0B1A30' }, { name: 'Olive', hex: '#4A5240' }, { name: 'Black', hex: '#111111' }],
     fabric: 'Recycled nylon shell · Quilted lining',
     care: 'Machine wash cold · Hang dry',
     sku: 'CLM-JK-002'
   },
   {
-    name: 'Oversized Navy Hoodie',
-    cat: 'hoodies',
-    price: 6490, old: 7990, tag: 'Bestseller',
-    desc: 'Cut with a dropped shoulder and a boxy fit that drapes perfectly. Brushed fleece inside for softness, double-layer hood for structure. The one hoodie you\'ll live in.',
+    name: 'Oversized Navy Hoodie', cat: 'hoodies', price: 6490, old: 7990, tag: 'Bestseller',
+    desc: 'Cut with a dropped shoulder and a boxy fit that drapes perfectly.',
     sizes: ['S','M','L','XL','XXL'],
-    colors: [
-      { name: 'Navy', hex: '#131F3A' },
-      { name: 'Charcoal', hex: '#3A3A3A' },
-      { name: 'Off-White', hex: '#F1EFE9' }
-    ],
+    colors: [{ name: 'Navy', hex: '#131F3A' }, { name: 'Charcoal', hex: '#3A3A3A' }, { name: 'Off-White', hex: '#F1EFE9' }],
     fabric: '85% Cotton / 15% Poly · 400 GSM fleece',
     care: 'Machine wash cold · Tumble dry low',
     sku: 'CLM-HD-001'
   },
   {
-    name: 'Fleece-Lined Zip Hoodie',
-    cat: 'hoodies',
-    price: 7290, old: null, tag: 'New',
-    desc: 'Full-zip hoodie with a double-lined hood and a soft brushed interior. Two side pockets with hidden zips. Perfect layering piece for cool mornings and late nights.',
+    name: 'Fleece-Lined Zip Hoodie', cat: 'hoodies', price: 7290, old: null, tag: 'New',
+    desc: 'Full-zip hoodie with a double-lined hood and soft brushed interior.',
     sizes: ['S','M','L','XL'],
-    colors: [
-      { name: 'Navy', hex: '#131F3A' },
-      { name: 'Grey', hex: '#8A8A8A' },
-      { name: 'Black', hex: '#0E0E0E' }
-    ],
+    colors: [{ name: 'Navy', hex: '#131F3A' }, { name: 'Grey', hex: '#8A8A8A' }, { name: 'Black', hex: '#0E0E0E' }],
     fabric: 'Cotton-poly blend · Fleece interior',
     care: 'Machine wash cold · Tumble dry low',
     sku: 'CLM-HD-002'
@@ -162,6 +135,9 @@ function cartVisual(p) {
 
 let io = null;
 
+/* ═══════════════════════════════════════════
+   PRODUCT RENDERING
+   ═══════════════════════════════════════════ */
 const grid = document.getElementById('productGrid');
 
 function renderProducts(filter = 'all') {
@@ -210,7 +186,9 @@ document.querySelectorAll('.cat-card').forEach(card => {
   });
 });
 
-/* ═══════ PRODUCT DETAIL MODAL ═══════ */
+/* ═══════════════════════════════════════════
+   PRODUCT DETAIL MODAL
+   ═══════════════════════════════════════════ */
 const detailModal  = document.getElementById('detailModal');
 const detailMedia  = document.getElementById('detailMedia');
 const detailCat    = document.getElementById('detailCat');
@@ -240,7 +218,7 @@ function openDetail(productName) {
   detailCat.textContent   = getCat(p.cat).label;
   detailName.textContent  = p.name;
   detailPrice.innerHTML   = `<span class="now">${money(p.price)}</span>${p.old ? `<span class="was">${money(p.old)}</span>` : ''}`;
-  detailDesc.textContent  = p.desc || 'A premium piece from the Coolism collection.';
+  detailDesc.textContent  = p.desc || '';
   detailFabric.textContent = p.fabric || '—';
   detailCare.textContent   = p.care || '—';
   detailSku.textContent    = p.sku || '—';
@@ -258,7 +236,6 @@ function openDetail(productName) {
   `).join('');
 
   detailQtyVal.textContent = detailState.qty;
-
   detailModal.classList.add('show');
   document.body.style.overflow = 'hidden';
 }
@@ -325,7 +302,9 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeDetail(); closeAuth(); closeCart(); closeMobile(); }
 });
 
-/* ═══════ CART ═══════ */
+/* ═══════════════════════════════════════════
+   CART
+   ═══════════════════════════════════════════ */
 let cart = [];
 const cartDrawer = document.getElementById('cartDrawer');
 const overlay    = document.getElementById('overlay');
@@ -403,7 +382,9 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
 
 renderCart();
 
-/* ═══════ AUTH MODAL ═══════ */
+/* ═══════════════════════════════════════════
+   AUTH MODAL
+   ═══════════════════════════════════════════ */
 const authModal = document.getElementById('authModal');
 const loginForm = document.getElementById('loginForm');
 const signupForm = document.getElementById('signupForm');
@@ -448,53 +429,183 @@ function clearErrors(form) {
   form.querySelectorAll('[data-field]').forEach(f => f.classList.remove('err'));
 }
 
+/* ─── LOGIN ─── */
 loginForm.addEventListener('submit', e => {
   e.preventDefault();
-  const email = document.getElementById('li-email');
-  const pass  = document.getElementById('li-pass');
+  const emailInput = document.getElementById('li-email');
+  const passInput  = document.getElementById('li-pass');
+  const email = emailInput.value.trim();
+  const pass  = passInput.value;
+  const btn   = document.getElementById('loginBtn');
+
   const ok = [
-    setErr(email, !isEmail(email.value)),
-    setErr(pass,  pass.value.length < 6)
+    setErr(emailInput, !isEmail(email)),
+    setErr(passInput,  pass.length < 6)
   ].every(Boolean);
   if (!ok) return;
-  closeAuth();
-  toast('Welcome back to Coolism');
-  loginForm.reset();
+
+  btn.classList.add('loading');
+  btn.textContent = 'Signing in...';
+
+  auth.signInWithEmailAndPassword(email, pass)
+    .then(userCredential => {
+      const user = userCredential.user;
+      if (user.providerData[0].providerId === 'password' && !user.emailVerified) {
+        auth.signOut();
+        toast('Please verify your email first. Check your inbox.');
+        btn.classList.remove('loading');
+        btn.textContent = 'Sign In';
+        return;
+      }
+      closeAuth();
+      toast(`Welcome back, ${user.email}`);
+      loginForm.reset();
+      btn.classList.remove('loading');
+      btn.textContent = 'Sign In';
+    })
+    .catch(error => {
+      btn.classList.remove('loading');
+      btn.textContent = 'Sign In';
+      handleAuthError(error, 'login');
+    });
 });
 
+/* ─── SIGNUP ─── */
 signupForm.addEventListener('submit', e => {
   e.preventDefault();
   const first = document.getElementById('su-first');
   const last  = document.getElementById('su-last');
-  const email = document.getElementById('su-email');
+  const emailInput = document.getElementById('su-email');
   const phone = document.getElementById('su-phone');
-  const pass  = document.getElementById('su-pass');
+  const passInput = document.getElementById('su-pass');
   const terms = document.getElementById('su-terms');
+  const btn = document.getElementById('signupBtn');
+
+  const email = emailInput.value.trim();
+  const pass  = passInput.value;
+
   const ok = [
     setErr(first, first.value.trim().length < 2),
     setErr(last,  last.value.trim().length < 2),
-    setErr(email, !isEmail(email.value)),
+    setErr(emailInput, !isEmail(email)),
     setErr(phone, !isPhone(phone.value)),
-    setErr(pass,  pass.value.length < 6)
+    setErr(passInput, pass.length < 6)
   ].every(Boolean);
   if (!ok) return;
   if (!terms.checked) return toast('Please accept the Terms to continue');
-  closeAuth();
-  toast(`Welcome to Coolism, ${first.value.trim()}`);
-  signupForm.reset();
+
+  btn.classList.add('loading');
+  btn.textContent = 'Creating...';
+
+  auth.createUserWithEmailAndPassword(email, pass)
+    .then(userCredential => {
+      const user = userCredential.user;
+      return user.updateProfile({
+        displayName: `${first.value.trim()} ${last.value.trim()}`
+      })
+      .then(() => user.sendEmailVerification())
+      .then(() => auth.signOut())
+      .then(() => {
+        closeAuth();
+        toast('Verification email sent! Check your inbox to activate.');
+        signupForm.reset();
+        btn.classList.remove('loading');
+        btn.textContent = 'Create Account';
+        switchTab('login');
+      });
+    })
+    .catch(error => {
+      btn.classList.remove('loading');
+      btn.textContent = 'Create Account';
+      handleAuthError(error, 'signup');
+    });
 });
 
-document.querySelectorAll('[data-social]').forEach(btn =>
-  btn.addEventListener('click', () => toast(`${btn.dataset.social} sign-in coming soon`)));
+/* ─── GOOGLE SIGN-IN ─── */
+document.querySelectorAll('[data-social="Google"]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
 
+    auth.signInWithPopup(provider)
+      .then(result => {
+        closeAuth();
+        toast(`Signed in as ${result.user.displayName || result.user.email}`);
+      })
+      .catch(error => {
+        if (error.code === 'auth/popup-closed-by-user') return;
+        if (error.code === 'auth/popup-blocked') {
+          toast('Popup blocked. Please allow popups.');
+          return;
+        }
+        handleAuthError(error, 'google');
+      });
+  });
+});
+
+document.querySelectorAll('[data-social="Apple"]').forEach(btn => {
+  btn.addEventListener('click', () => toast('Apple sign-in coming soon'));
+});
+
+/* ─── FORGOT PASSWORD ─── */
+document.getElementById('forgotPass').addEventListener('click', e => {
+  e.preventDefault();
+  const email = document.getElementById('li-email').value.trim();
+  if (!isEmail(email)) {
+    toast('Enter your email above first.');
+    return;
+  }
+  auth.sendPasswordResetEmail(email)
+    .then(() => toast('Password reset email sent.'))
+    .catch(error => handleAuthError(error, 'reset'));
+});
+
+/* ─── AUTH ERROR MESSAGES ─── */
+function handleAuthError(error, context) {
+  const code = error.code || '';
+  let msg = 'Something went wrong. Try again.';
+
+  if (code === 'auth/user-not-found') msg = 'No account found with this email.';
+  else if (code === 'auth/wrong-password' || code === 'auth/invalid-credential') msg = 'Incorrect email or password.';
+  else if (code === 'auth/invalid-email') msg = 'Please enter a valid email.';
+  else if (code === 'auth/email-already-in-use') msg = 'Email already registered. Try logging in.';
+  else if (code === 'auth/weak-password') msg = 'Password too weak. Use 6+ characters.';
+  else if (code === 'auth/too-many-requests') msg = 'Too many attempts. Try again later.';
+  else if (code === 'auth/network-request-failed') msg = 'Network error. Check your connection.';
+  else if (code === 'auth/operation-not-allowed') msg = 'Sign-in method not enabled in Firebase.';
+  else if (code === 'auth/unauthorized-domain') msg = 'Domain not authorized in Firebase.';
+
+  toast(msg);
+  console.error(`[Auth ${context}]`, error);
+}
+
+/* ─── AUTH STATE — updates navbar when user logs in/out ─── */
+auth.onAuthStateChanged(user => {
+  const accountBtn = document.getElementById('accountBtn');
+  if (user) {
+    const name = user.displayName || user.email.split('@')[0];
+    accountBtn.textContent = name.split(' ')[0];
+    accountBtn.title = user.email;
+  } else {
+    accountBtn.textContent = 'Login';
+    accountBtn.title = '';
+  }
+});
+
+/* ═══════════════════════════════════════════
+   NEWSLETTER
+   ═══════════════════════════════════════════ */
 document.getElementById('newsForm').addEventListener('submit', e => {
   e.preventDefault();
   const input = e.target.querySelector('input');
   if (!isEmail(input.value)) return toast('Please enter a valid email');
-  toast("You're on the list — welcome to the circle");
+  toast("You're on the list!");
   input.value = '';
 });
 
+/* ═══════════════════════════════════════════
+   MOBILE MENU
+   ═══════════════════════════════════════════ */
 const mobileMenu = document.getElementById('mobileMenu');
 function closeMobile() { mobileMenu.classList.remove('open'); }
 document.getElementById('hamburger').addEventListener('click', () => {
@@ -503,20 +614,29 @@ document.getElementById('hamburger').addEventListener('click', () => {
 mobileMenu.querySelectorAll('a:not(#mobileLogin)').forEach(a =>
   a.addEventListener('click', closeMobile));
 
+/* ═══════════════════════════════════════════
+   HEADER SCROLL
+   ═══════════════════════════════════════════ */
 const navWrap = document.getElementById('navWrap');
 window.addEventListener('scroll', () => {
   navWrap.classList.toggle('scrolled', window.scrollY > 20);
 }, { passive: true });
 
+/* ═══════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════ */
 let toastTimer;
 function toast(msg) {
   const el = document.getElementById('toast');
   document.getElementById('toastMsg').textContent = msg;
   el.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
 }
 
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════ */
 function observeReveals() {
   const items = document.querySelectorAll('.reveal:not(.in)');
   if (!('IntersectionObserver' in window)) {
@@ -545,5 +665,8 @@ window.addEventListener('load', () => {
   });
 });
 
+/* ═══════════════════════════════════════════
+   MARQUEE
+   ═══════════════════════════════════════════ */
 const mq = document.getElementById('marquee');
 mq.innerHTML += mq.innerHTML;
