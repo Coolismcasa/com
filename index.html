@@ -335,6 +335,7 @@
         <button data-tab="login" class="active">Login</button>
         <button data-tab="signup">Sign Up</button>
       </div>
+
       <form id="loginForm" novalidate>
         <h2 class="panel-title">Welcome back</h2>
         <p class="panel-sub">Sign in to continue your collection.</p>
@@ -350,9 +351,9 @@
         </div>
         <div class="form-foot">
           <label><input type="checkbox" checked /> Remember me</label>
-          <a href="#">Forgot password?</a>
+          <a href="#" id="forgotPass">Forgot password?</a>
         </div>
-        <button type="submit" class="btn btn-gold">Sign In</button>
+        <button type="submit" class="btn btn-gold" id="loginBtn">Sign In</button>
         <div class="divider">OR</div>
         <div class="social-row">
           <button type="button" data-social="Google">
@@ -363,6 +364,7 @@
           </button>
         </div>
       </form>
+
       <form id="signupForm" novalidate hidden>
         <h2 class="panel-title">Create your account</h2>
         <p class="panel-sub">It takes less than a minute.</p>
@@ -396,7 +398,7 @@
         <div class="form-foot">
           <label><input type="checkbox" id="su-terms" /> I agree to the Terms & Privacy Policy</label>
         </div>
-        <button type="submit" class="btn btn-gold">Create Account</button>
+        <button type="submit" class="btn btn-gold" id="signupBtn">Create Account</button>
         <div class="divider">OR</div>
         <div class="social-row">
           <button type="button" data-social="Google">
@@ -456,6 +458,7 @@
 </div>
 
 <div class="toast" id="toast"><span class="dot"></span><span id="toastMsg">Added to bag</span></div>
+
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
